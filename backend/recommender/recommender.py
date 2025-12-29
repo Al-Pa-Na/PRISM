@@ -1,12 +1,13 @@
-from scraper.amazon_scraper import fetch_price
+from scraper.price_resolver import resolve_price
 from sentiment.sentiment_engine import sentiment_score
 from sentiment.aspect_sentiment import aspect_sentiment
 
 def recommend(items):
     out = []
-    for item in items:
-        price = fetch_price(item)
-        if not price:
+
+    for it in items:
+        price = resolve_price(it["item"], it["category"])
+        if price is None:
             continue
 
         reviews = [
@@ -17,8 +18,9 @@ def recommend(items):
         ]
 
         out.append({
-            "item": item,
-            "price": price["price"],
+            "item": it["item"],
+            "category": it["category"],
+            "price": price,
             "sentiment": sentiment_score(reviews),
             "aspects": aspect_sentiment(reviews)
         })
