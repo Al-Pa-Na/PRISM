@@ -1,4 +1,4 @@
 from semantic_matcher import semantic_match
 
-tokens = ["m i l k", "banana", "eg g s"]
+tokens = ["milk", "banana", "headphones", "jeans"]
 print(semantic_match(tokens))

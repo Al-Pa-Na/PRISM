@@ -1,12 +1,7 @@
 from sentence_transformers import SentenceTransformer, util
+from catalog import CATALOG
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
-
-CATALOG = {
-    "grocery": ["milk", "banana", "eggs", "bread", "rice", "oil"],
-    "electronics": ["headphones", "charger", "power bank", "mouse"],
-    "fashion": ["t shirt", "jeans", "dress", "shoes"]
-}
 
 def semantic_match(tokens, threshold=0.45):
     results = []
